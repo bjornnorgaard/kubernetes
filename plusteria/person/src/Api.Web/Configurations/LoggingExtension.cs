@@ -18,7 +18,7 @@ namespace Api.Web.Configurations
             var o = new LoggingOptions();
             configuration.Bind(nameof(LoggingOptions), o);
 
-            var elasticsearchSinkOptions = new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
+            var elasticsearchSinkOptions = new ElasticsearchSinkOptions(new Uri(o.ElasticsearchUrl))
             {
                 AutoRegisterTemplate = true,
                 IndexFormat = $"log-{DateTime.Now:yyyy.MM.dd}",

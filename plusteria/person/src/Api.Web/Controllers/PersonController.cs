@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Application.Features.Person;
 using MediatR;
@@ -69,6 +69,3 @@ namespace Api.Web.Controllers
         }
     }
 }
-
-
-
