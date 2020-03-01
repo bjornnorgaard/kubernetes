@@ -24,8 +24,8 @@ namespace Api.Web
             services.AddAutoMapper(typeof(AssemblyAnchor), typeof(Startup));
             services.AddCorsPolicy(Configuration);
             services.AddMediatrPipeline();
-            services.AddHealthChecks();
             services.AddSwagger();
+            services.AddHealth();
 
             AddDatabase(services);
             AddLogger(services);
@@ -40,8 +40,7 @@ namespace Api.Web
             app.UseCorsPolicy();
             UpdateDatabase(app, env);
             app.UseSwashbuckleSwagger();
-            app.UseHealthChecks("/health");
-            app.UseHealthChecks("/ready");
+            app.UseHealth();
             app.UseEndpoints(e => e.MapControllers());
         }
 

@@ -11,8 +11,8 @@ FROM base AS build
 COPY . .
 RUN dotnet build
 
-FROM build AS test
-RUN dotnet test
+# FROM build AS test
+# RUN dotnet test
 
 FROM build AS publish
 RUN dotnet publish -c Release -o out

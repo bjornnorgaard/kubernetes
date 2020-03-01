@@ -14,6 +14,7 @@ namespace Api.Web.Configurations
 
             // Person of pipeline-behaviors is important
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipeline<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(SlowingPipeline<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipeline<,>));
 
             // Add validators

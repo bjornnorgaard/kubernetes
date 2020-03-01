@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+  labels:
+    app: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: database
+          image: mcr.microsoft.com/mssql/server:2017-CU14-ubuntu
+          ports:
+            - containerPort: 1433
+              name: database
+          env:
+            - name: "SA_PASSWORD"
+              value: "Your_password123"
+            - name: "ACCEPT_EULA"
+              value: "Y"
+          resources:
+            # requests:
+            #   cpu: "2"
+            #   memory: "128M"
+            limits:
+              cpu: "6"
+              memory: "6G"

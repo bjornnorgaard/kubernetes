@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models;
 using Repository;
+using Serilog;
 
 namespace Api.Web.Configurations
 {
@@ -16,12 +18,11 @@ namespace Api.Web.Configurations
         public static IServiceCollection AddDatabase(this IServiceCollection services,
                                                      IConfiguration configuration)
         {
-            services.AddDbContext<Context>(
-                                           o =>
-                                           {
-                                               o.UseSqlServer(configuration
-                                                                  .GetConnectionString("DefaultConnection"));
-                                           });
+            services.AddDbContext<Context>(o =>
+            {
+                o.UseSqlServer(configuration
+                                   .GetConnectionString("DefaultConnection"));
+            });
 
             services.AddScoped<IContext>(ctx => ctx.GetService<Context>());
 
@@ -31,15 +32,30 @@ namespace Api.Web.Configurations
         public static IApplicationBuilder UpdateDatabase(this IApplicationBuilder app,
                                                          IWebHostEnvironment env)
         {
-            if (env.IsProduction()) return app;
+            // if (env.IsProduction()) return app;
 
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<Context>();
-                context.Database.Migrate();
+                try
+                {
+                    Log.Logger.Information("Attempting to migrate database");
+                    context.Database.Migrate();
+                }
+                catch (Exception e)
+                {
+                    Log.Logger.Information("Failed to migrate database with exception: {e}", e);
+                }
 
+                Log.Logger.Information("Successfully migrated database");
+
+                if (context.Persons.Any())
+                {
+                    Log.Logger.Information("Database not empty, continuing without seeding");    
+                }
                 if (!context.Persons.Any())
                 {
+                    Log.Logger.Information("Database is empty, seeding started");
                     var pets = new List<Person>
                     {
                         new Person { Name = "Simon Says", Age = 4 },
@@ -50,11 +66,9 @@ namespace Api.Web.Configurations
                     context.SaveChanges();
                 }
             }
-
+            
+            Log.Logger.Information("Successfully finished database update");
             return app;
         }
     }
 }
-
-
-

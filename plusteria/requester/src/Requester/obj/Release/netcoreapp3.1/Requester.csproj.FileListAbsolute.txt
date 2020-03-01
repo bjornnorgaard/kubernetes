@@ -1,0 +1,11 @@
+C:\src\github\kubernetes\plusteria\requester\src\Requester\bin\Release\netcoreapp3.1\Requester.exe
+C:\src\github\kubernetes\plusteria\requester\src\Requester\bin\Release\netcoreapp3.1\Requester.deps.json
+C:\src\github\kubernetes\plusteria\requester\src\Requester\bin\Release\netcoreapp3.1\Requester.runtimeconfig.json
+C:\src\github\kubernetes\plusteria\requester\src\Requester\bin\Release\netcoreapp3.1\Requester.runtimeconfig.dev.json
+C:\src\github\kubernetes\plusteria\requester\src\Requester\bin\Release\netcoreapp3.1\Requester.dll
+C:\src\github\kubernetes\plusteria\requester\src\Requester\bin\Release\netcoreapp3.1\Requester.pdb
+C:\src\github\kubernetes\plusteria\requester\src\Requester\obj\Release\netcoreapp3.1\Requester.csprojAssemblyReference.cache
+C:\src\github\kubernetes\plusteria\requester\src\Requester\obj\Release\netcoreapp3.1\Requester.AssemblyInfoInputs.cache
+C:\src\github\kubernetes\plusteria\requester\src\Requester\obj\Release\netcoreapp3.1\Requester.AssemblyInfo.cs
+C:\src\github\kubernetes\plusteria\requester\src\Requester\obj\Release\netcoreapp3.1\Requester.dll
+C:\src\github\kubernetes\plusteria\requester\src\Requester\obj\Release\netcoreapp3.1\Requester.pdb

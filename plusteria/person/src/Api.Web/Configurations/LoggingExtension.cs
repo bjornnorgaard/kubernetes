@@ -14,7 +14,8 @@ namespace Api.Web.Configurations
                                                    IConfiguration configuration)
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
+            var podName = Environment.GetEnvironmentVariable("MY_POD_NAME") ?? "Local";
+            
             var o = new LoggingOptions();
             configuration.Bind(nameof(LoggingOptions), o);
 
@@ -29,12 +30,15 @@ namespace Api.Web.Configurations
                          .ReadFrom.Configuration(configuration)
                          .Enrich.WithProperty("environment", environment)
                          .Enrich.WithProperty("system", o.SystemName)
+                         .Enrich.WithProperty("pod", podName)
                          .Enrich.WithExceptionDetails()
                          .Enrich.FromLogContext()
                          .WriteTo.Elasticsearch(elasticsearchSinkOptions)
                          .WriteTo.RollingFile($"C:/logs/{o.SystemName}/{o.SystemName}-{environment}-{{Date}}.txt")
                          .WriteTo.Console()
                          .CreateLogger();
+
+            Log.Logger.Information("Successfully configured logger");
 
             return services;
         }

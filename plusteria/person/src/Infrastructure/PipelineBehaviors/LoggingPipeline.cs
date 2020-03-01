@@ -8,13 +8,10 @@ namespace Infrastructure.PipelineBehaviors
 {
     public class LoggingPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly IValidator<TRequest> _validator;
         private readonly ILogger<LoggingPipeline<TRequest, TResponse>> _logger;
 
-        public LoggingPipeline(ILogger<LoggingPipeline<TRequest, TResponse>> logger,
-                               IValidator<TRequest> validator = null)
+        public LoggingPipeline(ILogger<LoggingPipeline<TRequest, TResponse>> logger)
         {
-            _validator = validator;
             _logger = logger;
         }
 

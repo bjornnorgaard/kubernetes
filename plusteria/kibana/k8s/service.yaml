@@ -8,7 +8,7 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: 3456
+      port: 5601
       targetPort: 5601
   selector:
     app: kibana
