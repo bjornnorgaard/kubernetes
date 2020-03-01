@@ -14,7 +14,7 @@ namespace Api.Web.Configurations
                                                    IConfiguration configuration)
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var podName = Environment.GetEnvironmentVariable("MY_POD_NAME") ?? "Local";
+            var podName = Environment.GetEnvironmentVariable("POD_NAME") ?? "Local";
             
             var o = new LoggingOptions();
             configuration.Bind(nameof(LoggingOptions), o);
