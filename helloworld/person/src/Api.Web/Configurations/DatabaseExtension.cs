@@ -32,8 +32,6 @@ namespace Api.Web.Configurations
         public static IApplicationBuilder UpdateDatabase(this IApplicationBuilder app,
                                                          IWebHostEnvironment env)
         {
-            // if (env.IsProduction()) return app;
-
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<Context>();

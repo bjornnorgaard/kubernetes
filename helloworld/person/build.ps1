@@ -1,5 +1,4 @@
 $app = "person"
-# $tag = Get-Date -Format "yyyy-MM-dd-HH-mm"
 $tag = Get-Date -Format "HH-mm"
 $image = $app + "/api:" + $tag
 

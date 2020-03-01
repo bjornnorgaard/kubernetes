@@ -7,14 +7,15 @@ namespace Api.Web.Configurations
 {
     public static class SwaggerExtension
     {
-        private static readonly string PodName = Environment.GetEnvironmentVariable("MY_POD_NAME") ?? "Person API";
+        private static readonly string PodName = Environment.GetEnvironmentVariable("POD_NAME") ?? "Person API";
+        private static readonly string TestVar = Environment.GetEnvironmentVariable("TEST_CONFIGMAP_VAR") ?? "Not yet";
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(options =>
             {
                 options.CustomSchemaIds(t => t.FullName);
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = PodName, Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = PodName, Description = TestVar, Version = "v1" });
             });
 
             return services;

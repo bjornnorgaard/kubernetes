@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: person-configmap
+  namespace: chronos
+data:
+  TEST_CONFIGMAP_VAR: "Comming live from the map!"
+  ConnectionStrings__DefaultConnection: "Server=database;Database=Person;User=sa;Password=Your_password123;"
+  ASPNETCORE_ENVIRONMENT: "Production"
+  SystemName: "Person API"
+  ElasticsearchUrl: "http://elasticsearch:9200"

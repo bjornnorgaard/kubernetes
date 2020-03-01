@@ -22,7 +22,7 @@ namespace Api.Web.Configurations
             var elasticsearchSinkOptions = new ElasticsearchSinkOptions(new Uri(o.ElasticsearchUrl))
             {
                 AutoRegisterTemplate = true,
-                IndexFormat = $"log-{DateTime.Now:yyyy.MM.dd}",
+                IndexFormat = $"logstash-{DateTime.Now:yyyy.MM.dd}",
                 ModifyConnectionSettings = x => x.BasicAuthentication("elastic", "changeme")
             };
             

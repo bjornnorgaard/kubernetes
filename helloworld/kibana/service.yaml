@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kibana
-  namespace: default
+  namespace: chronos
   labels:
     app: kibana
 spec:
