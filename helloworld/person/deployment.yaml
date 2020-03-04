@@ -6,10 +6,15 @@ metadata:
   labels:
     app: person
 spec:
-  replicas: 2
+  replicas: 10
   selector:
     matchLabels:
       app: person
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 25%
   template:
     metadata:
       labels:
@@ -17,7 +22,7 @@ spec:
     spec:
       containers:
         - name: person
-          image: person/api:22-26
+          image: person/api:23-37
           ports:
             - containerPort: 80
           envFrom:
@@ -37,14 +42,14 @@ spec:
               memory: "512M"
           livenessProbe:
             httpGet:
-              path: /health
+              path: /api/v1/environment/alive
               port: 80
             initialDelaySeconds: 3
             periodSeconds: 5
             failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /ready
+              path: /api/v1/environment/ready
               port: 80
             initialDelaySeconds: 3
             periodSeconds: 5
